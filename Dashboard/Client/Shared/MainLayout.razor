@@ -1,0 +1,50 @@
+﻿@inherits LayoutComponentBase
+
+<MatToastContainer />
+<MatThemeProvider Theme="@theme1">
+    <MatAppBarContainer>
+        <MatAppBar Fixed="true">
+            <MatAppBarRow>
+                <MatAppBarSection>
+                    <MatIconButton Icon="menu" OnClick="@(()=> Open())"></MatIconButton>
+                    <MatAppBarTitle>Nebulosa</MatAppBarTitle>
+                </MatAppBarSection>
+                <MatAppBarSection Align="@MatAppBarSectionAlign.End">
+                    <MatIconButton Icon="user"></MatIconButton>
+                </MatAppBarSection>
+            </MatAppBarRow>
+        </MatAppBar>
+        <MatAppBarContent>
+            <MatDrawerContainer >
+                <MatDrawer Opened="@Opened" Mode="MatDrawerMode.Modal">
+                    <MatListGroup>
+                        
+                    </MatListGroup>
+                </MatDrawer>
+            </MatDrawerContainer>
+            <MatDrawerContent>
+                <div class="p-4 d-flex flex-wrap justify-content-center align-items-center">
+                    @Body
+                </div>
+            </MatDrawerContent>
+        </MatAppBarContent>
+    </MatAppBarContainer>
+</MatThemeProvider>
+
+@code
+{
+    private bool Opened = false;
+
+    private void Open()
+    {
+        Opened = true;
+    }
+
+    MatTheme theme1 = new MatTheme()
+    {
+        Primary = MatThemeColors.Teal._800.Value,
+        Secondary = MatThemeColors.BlueGrey._500.Value
+    };
+
+
+}

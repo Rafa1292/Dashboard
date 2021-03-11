@@ -1,0 +1,29 @@
+﻿<h4 class="col-12 text-center text-black-50 pt-4">Cliente</h4>
+
+<EditForm Model="Customer" Class="">
+    <p class=" my-4">
+        <MatTextField @bind-Value="Customer.Name" Label="Nombre" FullWidth="true"></MatTextField>
+    </p>
+    <p class=" my-4">
+        <MatNumericUpDownField Label="Telefono"
+                               FullWidth="true"
+                               @bind-Value=@Customer.Phone
+                               DecimalPlaces=0>
+        </MatNumericUpDownField>
+    </p>
+    <p class=" my-4">
+        <MatNumericUpDownField Label="Monto maximo aprobado"
+                               @bind-Value=@Customer.MaxAmount
+                               FullWidth="true"
+                               DecimalPlaces=0>
+        </MatNumericUpDownField>
+    </p>
+    <div class="col-12 d-flex flex-wrap justify-content-center">
+        <MatButton Class="col-md-6" Style="" Raised="true">Guardar</MatButton>
+        <MatButton Class="col-md-6" Style="" Dense="true">Volver</MatButton>
+    </div>
+</EditForm>
+
+@code {
+    [Parameter] public CustomerVM Customer { get; set; }
+}

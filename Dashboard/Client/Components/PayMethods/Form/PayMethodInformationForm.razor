@@ -1,0 +1,15 @@
+﻿<h4 class="col-12 text-center text-black-50 pt-4">Tipo de pago</h4>
+
+<EditForm Model="PayMethod" Class="">
+    <p class="form-group col-12 d-flex flex-wrap p-4">
+        <MatTextField @bind-Value="PayMethod.Description" Label="Descripcion"></MatTextField>
+    </p>
+    <div class="col-12 d-flex flex-wrap justify-content-center">
+        <MatButton Class="col-md-6" Style="" Raised="true">Guardar</MatButton>
+        <MatButton Class="col-md-6" Style="" Dense="true">Volver</MatButton>
+    </div>
+</EditForm>
+
+@code {
+    [Parameter] public PayMethodVM PayMethod { get; set; }
+}
