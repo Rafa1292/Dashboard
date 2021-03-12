@@ -14,7 +14,7 @@ namespace Dashboard.Shared.ViewModels
 
         public int Salary { get; set; }
 
-        public DateTime WorksBegin { get; set; }
+        public DateTime StartOfWork { get; set; }
 
 
     }

@@ -1,0 +1,47 @@
+﻿<h4 class="col-12 text-center p-4 font-weight-bold text-black-50">Trabajadores</h4>
+
+<div class="col-md-8 d-flex flex-wrap p-2 mat-elevation-z6 ">
+    <div class="col-12 p-2 m-0 d-flex flex-wrap  border-bottom border-secondary">
+        <span class="col-3 justify-content-center align-items-center p-2 text-center smallDeviceHideColumnTable"><strong>Nombre</strong></span>
+        <span class="col-3 justify-content-center align-items-center p-2 text-center smallDeviceHideColumnTable"><strong>Telefono</strong></span>
+        <span class="col-2 justify-content-center align-items-center p-2 text-center smallDeviceHideColumnTable"><strong>Salario</strong></span>
+        <span class="col-2 justify-content-center align-items-center p-2 text-center smallDeviceHideColumnTable"><strong>Inicio laboral</strong></span>
+        <span class="col-2"></span>
+    </div>
+    @foreach (var worker in workers)
+    {
+        <div class="col-12 p-2 m-0 d-flex flex-wrap  border-bottom border-secondary">
+            <span class="col-md-3 justify-content-center d-flex text-center p-2">@worker.Name</span>
+            <span class="col-md-3 justify-content-center d-flex text-center p-2">@worker.Phone</span>
+            <span class="col-md-2 justify-content-center d-flex text-center p-2">@worker.Salary</span>
+            <span class="col-md-2 justify-content-center d-flex text-center p-2">@worker.StartOfWork.ToShortDateString()</span>
+            <div class="col-md-2 d-flex flex-wrap justify-content-center">
+                <MatButton Class="col-12" Style="" Raised="true">Editar</MatButton>
+                <MatButton Class="col-12" Style="" Dense="true">Elimminar</MatButton>
+            </div>
+        </div>
+
+    }
+</div>
+
+
+
+
+
+@code {
+    private List<WorkerVM> workers = new List<WorkerVM>();
+
+    protected override void OnInitialized()
+    {
+        GetCustomers();
+    }
+
+    private void GetCustomers()
+    {
+        workers.Add(new WorkerVM() { Name = "Hector", Phone = 85002818, Salary = 20000, StartOfWork = DateTime.Now.Date });
+        workers.Add(new WorkerVM() { Name = "Manuel", Phone = 85002818, Salary = 30000, StartOfWork = DateTime.Now.Date });
+        workers.Add(new WorkerVM() { Name = "Enrique", Phone = 85002818, Salary = 10000, StartOfWork = DateTime.Now.Date });
+        workers.Add(new WorkerVM() { Name = "Manolas", Phone = 85002818, Salary = 5000, StartOfWork = DateTime.Now.Date });
+
+    }
+}
