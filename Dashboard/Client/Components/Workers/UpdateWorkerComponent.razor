@@ -1,8 +1,8 @@
 ﻿
-<WorkerInformationForm Worker="worker" />
+<WorkerInformationForm Worker="Worker" />
 
 
 @code{
-    private WorkerVM worker = new WorkerVM();
+    [Parameter] public WorkerVM Worker { get; set; }
 
 }

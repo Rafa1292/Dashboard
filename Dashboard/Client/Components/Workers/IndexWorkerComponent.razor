@@ -8,7 +8,7 @@
         <span class="col-2 justify-content-center align-items-center p-2 text-center smallDeviceHideColumnTable"><strong>Inicio laboral</strong></span>
         <span class="col-2"></span>
     </div>
-    @foreach (var worker in workers)
+    @foreach (var worker in Workers)
     {
         <div class="col-12 p-2 m-0 d-flex flex-wrap  border-bottom border-secondary">
             <span class="col-md-3 justify-content-center d-flex text-center p-2">@worker.Name</span>
@@ -29,19 +29,5 @@
 
 
 @code {
-    private List<WorkerVM> workers = new List<WorkerVM>();
-
-    protected override void OnInitialized()
-    {
-        GetCustomers();
-    }
-
-    private void GetCustomers()
-    {
-        workers.Add(new WorkerVM() { Name = "Hector", Phone = 85002818, Salary = 20000, StartOfWork = DateTime.Now.Date });
-        workers.Add(new WorkerVM() { Name = "Manuel", Phone = 85002818, Salary = 30000, StartOfWork = DateTime.Now.Date });
-        workers.Add(new WorkerVM() { Name = "Enrique", Phone = 85002818, Salary = 10000, StartOfWork = DateTime.Now.Date });
-        workers.Add(new WorkerVM() { Name = "Manolas", Phone = 85002818, Salary = 5000, StartOfWork = DateTime.Now.Date });
-
-    }
+    [Parameter] public List<WorkerVM> Workers { get; set; }
 }

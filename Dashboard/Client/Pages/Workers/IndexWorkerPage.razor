@@ -1,0 +1,21 @@
+﻿@page "/Worker/Index"
+
+<IndexWorkerComponent Workers="workers"/>
+
+@code {
+    private List<WorkerVM> workers = new List<WorkerVM>();
+
+    protected override void OnInitialized()
+    {
+        GetCustomers();
+    }
+
+    private void GetCustomers()
+    {
+        workers.Add(new WorkerVM() { Name = "Hector", Phone = 85002818, Salary = 20000, StartOfWork = DateTime.Now.Date });
+        workers.Add(new WorkerVM() { Name = "Manuel", Phone = 85002818, Salary = 30000, StartOfWork = DateTime.Now.Date });
+        workers.Add(new WorkerVM() { Name = "Enrique", Phone = 85002818, Salary = 10000, StartOfWork = DateTime.Now.Date });
+        workers.Add(new WorkerVM() { Name = "Manolas", Phone = 85002818, Salary = 5000, StartOfWork = DateTime.Now.Date });
+
+    }
+}
