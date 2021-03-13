@@ -1,0 +1,21 @@
+﻿@page "/DebitType/Index"
+
+<IndexDebitTypeComponent DebitTypes="debitTypes"/>
+
+@code {
+    private List<DebitTypeVM> debitTypes = new List<DebitTypeVM>();
+
+    protected override void OnInitialized()
+    {
+        GetDebitTypes();
+    }
+
+    private void GetDebitTypes()
+    {
+        debitTypes.Add(new DebitTypeVM() { Description = "Insumo" });
+        debitTypes.Add(new DebitTypeVM() { Description = "Salario" });
+        debitTypes.Add(new DebitTypeVM() { Description = "Gasto Fijo" });
+
+    }
+
+}

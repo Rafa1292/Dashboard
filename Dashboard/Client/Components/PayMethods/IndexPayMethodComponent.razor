@@ -1,7 +1,7 @@
 ﻿<h4 class="col-12 text-center p-4 font-weight-bold text-black-50">Tipos de pago</h4>
 
 <div class="col-md-6 p-2 mat-elevation-z6 ">
-    @foreach (var payMethod in payMethods)
+    @foreach (var payMethod in PayMethods)
     {
         <div class="col-12 p-2 m-0 d-flex flex-wrap border-bottom border-secondary">
             <span class="col-md-8 justify-content-center d-flex align-items-center py-3">
@@ -23,18 +23,5 @@
 
 
 @code {
-    private List<PayMethodVM> payMethods = new List<PayMethodVM>();
-
-    protected override void OnInitialized()
-    {
-        GetPayMethods();
-    }
-
-    private void GetPayMethods()
-    {
-        payMethods.Add(new PayMethodVM() { Description = "Efectivo" });
-        payMethods.Add(new PayMethodVM() { Description = "Tarjeta" });
-        payMethods.Add(new PayMethodVM() { Description = "Sinpe" });
-
-    }
+    [Parameter] public List<PayMethodVM> PayMethods { get; set; }
 }

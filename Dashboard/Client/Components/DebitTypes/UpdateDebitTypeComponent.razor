@@ -1,9 +1,8 @@
 ﻿
 
-<DebitTypeInformationForm DebitType="debitType" />
+<DebitTypeInformationForm DebitType="DebitType" />
 
 
 @code {
-    private DebitTypeVM debitType = new DebitTypeVM();
-
+    [Parameter] public DebitTypeVM DebitType { get; set; }
 }

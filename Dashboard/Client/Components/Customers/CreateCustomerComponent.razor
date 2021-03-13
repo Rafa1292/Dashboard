@@ -1,8 +1,8 @@
 ﻿
 
 
-<CustomerInformationForm Customer="customer" />
+<CustomerInformationForm Customer="Customer" />
 
 @code {
-    private CustomerVM customer = new CustomerVM();
+    [Parameter] public CustomerVM Customer { get; set; }
 }

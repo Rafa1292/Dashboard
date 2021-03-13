@@ -1,0 +1,20 @@
+﻿@page "/PayMethod/Index"
+
+<IndexPayMethodComponent PayMethods="payMethods" />
+
+@code {
+    private List<PayMethodVM> payMethods = new List<PayMethodVM>();
+
+    protected override void OnInitialized()
+    {
+        GetPayMethods();
+    }
+
+    private void GetPayMethods()
+    {
+        payMethods.Add(new PayMethodVM() { Description = "Efectivo" });
+        payMethods.Add(new PayMethodVM() { Description = "Tarjeta" });
+        payMethods.Add(new PayMethodVM() { Description = "Sinpe" });
+
+    }
+}

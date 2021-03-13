@@ -1,7 +1,7 @@
 ﻿
 
-<PayMethodInformationForm PayMethod="payMethod" />
+<PayMethodInformationForm PayMethod="PayMethod" />
 
 @code {
-    private PayMethodVM payMethod = new PayMethodVM();
+    [Parameter] public PayMethodVM PayMethod { get; set; }
 }

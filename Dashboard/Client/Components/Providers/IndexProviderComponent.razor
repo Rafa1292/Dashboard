@@ -5,7 +5,7 @@
         <span class="col-4 justify-content-center align-items-center p-2 text-center smallDeviceHideColumnTable"><strong>Nombre</strong></span>
         <span class="col-4 justify-content-center align-items-center p-2 text-center smallDeviceHideColumnTable"><strong>Telefono</strong></span>
     </div>
-    @foreach (var customer in providers)
+    @foreach (var customer in Providers)
     {
         <div class="col-12 p-2 m-0 d-flex flex-wrap  border-bottom border-secondary">
             <span class="col-md-4 justify-content-center d-flex align-items-center p-2">@customer.Name</span>
@@ -24,19 +24,5 @@
 
 
 @code {
-    private List<ProviderVM> providers = new List<ProviderVM>();
-
-    protected override void OnInitialized()
-    {
-        GetCustomers();
-    }
-
-    private void GetCustomers()
-    {
-        providers.Add(new ProviderVM() { Name = "Cae", Phone = 85002818 });
-        providers.Add(new ProviderVM() { Name = "La Raza", Phone = 85002818 });
-        providers.Add(new ProviderVM() { Name = "Sigma", Phone = 85002818 });
-        providers.Add(new ProviderVM() { Name = "Coca-Cola", Phone = 85002818 });
-
-    }
+    [Parameter] public List<ProviderVM> Providers { get; set; }
 }

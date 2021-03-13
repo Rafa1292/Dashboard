@@ -1,8 +1,7 @@
 ﻿
 
-<ProviderInformationForm Provider="provider"/>
+<ProviderInformationForm Provider="Provider"/>
 
 @code {
-    private ProviderVM provider = new ProviderVM();
-
+    [Parameter] public ProviderVM Provider { get; set; }
 }
