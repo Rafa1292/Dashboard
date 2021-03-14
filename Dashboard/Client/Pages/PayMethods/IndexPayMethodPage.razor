@@ -1,4 +1,5 @@
 ﻿@page "/PayMethod/Index"
+@inject IRepository _repository
 
 <IndexPayMethodComponent PayMethods="payMethods" />
 
@@ -12,9 +13,6 @@
 
     private void GetPayMethods()
     {
-        payMethods.Add(new PayMethodVM() { Description = "Efectivo" });
-        payMethods.Add(new PayMethodVM() { Description = "Tarjeta" });
-        payMethods.Add(new PayMethodVM() { Description = "Sinpe" });
-
+        payMethods = _repository.GetPayMethods();
     }
 }

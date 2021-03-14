@@ -1,5 +1,9 @@
-﻿<h4 class="col-12 text-center p-4 font-weight-bold">Proveedores</h4>
-
+﻿<div class="col-12 d-flex flex-wrap justify-content-center p-4">
+    <h4 class="col-12 text-center font-weight-bold text-black-50">Proveedores</h4>
+    <a href="/Provider/Create">
+        <MatButton Outlined="true" TrailingIcon="add">Agregar</MatButton>
+    </a>
+</div>
 <div class="col-md-8 d-flex flex-wrap p-2 mat-elevation-z6 text-black-50">
     <div class="col-12 p-2 m-0 d-flex flex-wrap  border-bottom border-secondary">
         <span class="col-4 justify-content-center align-items-center p-2 text-center smallDeviceHideColumnTable"><strong>Nombre</strong></span>
@@ -11,7 +15,7 @@
             <span class="col-md-4 justify-content-center d-flex align-items-center p-2">@customer.Name</span>
             <span class="col-md-4 justify-content-center d-flex align-items-center p-2">@customer.Phone</span>
             <div class="col-md-4 d-flex flex-wrap justify-content-center">
-                <MatButton Class="col-12" Style="" Raised="true">Editar</MatButton>
+                <MatButtonLink Class="col-12" Style="" Raised="true" Href="/Provider/Update">Editar</MatButtonLink>
                 <MatButton Class="col-12" Style="" Dense="true">Elimminar</MatButton>
             </div>
         </div>

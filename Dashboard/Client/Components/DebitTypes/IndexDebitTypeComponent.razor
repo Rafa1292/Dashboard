@@ -1,5 +1,9 @@
-﻿<h4 class="col-12 text-center p-4 font-weight-bold text-black-50">Tipos de retiro</h4>
-
+﻿<div class="col-12 d-flex flex-wrap justify-content-center p-4">
+    <h4 class="col-12 text-center font-weight-bold text-black-50">Tipos de retiro</h4>
+    <a href="/DebitType/Create">
+        <MatButton Outlined="true" TrailingIcon="add">Agregar</MatButton>
+    </a>
+</div>
 <div class="col-md-6 p-2 mat-elevation-z6 ">
     @foreach (var debitType in DebitTypes)
     {
@@ -10,7 +14,7 @@
                 </strong>
             </span>
             <div class="col-md-4 d-flex flex-wrap justify-content-center">
-                <MatButton Class="col-12" Style="" Raised="true">Editar</MatButton>
+                <MatButtonLink Class="col-12" Style="" Raised="true" Href="/DebitType/Update">Editar</MatButtonLink>
                 <MatButton Class="col-12" Style="" Dense="true">Elimminar</MatButton>
             </div>
         </div>

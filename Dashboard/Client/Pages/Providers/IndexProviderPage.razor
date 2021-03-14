@@ -1,5 +1,7 @@
 ﻿@page "/Provider/Index"
-<IndexProviderComponent Providers="providers"/>
+@inject IRepository _repository
+
+<IndexProviderComponent Providers="providers" />
 
 @code {
     private List<ProviderVM> providers = new List<ProviderVM>();
@@ -11,10 +13,6 @@
 
     private void GetCustomers()
     {
-        providers.Add(new ProviderVM() { Name = "Cae", Phone = 85002818 });
-        providers.Add(new ProviderVM() { Name = "La Raza", Phone = 85002818 });
-        providers.Add(new ProviderVM() { Name = "Sigma", Phone = 85002818 });
-        providers.Add(new ProviderVM() { Name = "Coca-Cola", Phone = 85002818 });
-
+        providers = _repository.GetProviders();
     }
 }

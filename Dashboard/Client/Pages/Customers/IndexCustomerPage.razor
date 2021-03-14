@@ -1,5 +1,5 @@
 ﻿@page "/Customer/Index"
-
+@inject IRepository _repository 
 
 <IndexCustomerComponent Customers="customers"/>
 
@@ -14,10 +14,7 @@
 
     private void GetCustomers()
     {
-        customers.Add(new CustomerVM() { Name = "Hector", Phone = 85002818, MaxAmount = 20000 });
-        customers.Add(new CustomerVM() { Name = "Manuel", Phone = 85002818, MaxAmount = 30000 });
-        customers.Add(new CustomerVM() { Name = "Enrique", Phone = 85002818, MaxAmount = 10000 });
-        customers.Add(new CustomerVM() { Name = "Manolas", Phone = 85002818, MaxAmount = 5000 });
+        customers = _repository.GetCustomers();
 
     }
 }

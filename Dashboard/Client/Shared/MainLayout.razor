@@ -17,9 +17,7 @@
         <MatAppBarContent>
             <MatDrawerContainer >
                 <MatDrawer Opened="@Opened" Mode="MatDrawerMode.Modal">
-                    <MatListGroup>
-                        
-                    </MatListGroup>
+                    <NavMenu />
                 </MatDrawer>
             </MatDrawerContainer>
             <MatDrawerContent>
@@ -46,5 +44,16 @@
         Secondary = MatThemeColors.BlueGrey._500.Value
     };
 
+    protected override void OnInitialized()
+    {
+    }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if (!firstRender)
+        {
+            Opened = false;
+        }
+    }
 
 }

@@ -8,7 +8,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using MatBlazor;
-
+using Dashboard.Client.Repository;
 
 namespace Dashboard.Client
 {
@@ -21,6 +21,7 @@ namespace Dashboard.Client
 
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 
+            builder.Services.AddScoped<IRepository, Repository.Repository>();
 
 
             builder.Services.AddMatBlazor();

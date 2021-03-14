@@ -1,5 +1,9 @@
-﻿<h4 class="col-12 text-center p-4 font-weight-bold text-black-50">Trabajadores</h4>
-
+﻿<div class="col-12 d-flex flex-wrap justify-content-center p-4">
+    <h4 class="col-12 text-center font-weight-bold text-black-50">Trabajadores</h4>
+    <a href="/Worker/Create">
+        <MatButton Outlined="true" TrailingIcon="add">Agregar</MatButton>
+    </a>
+</div>
 <div class="col-md-8 d-flex flex-wrap p-2 mat-elevation-z6 ">
     <div class="col-12 p-2 m-0 d-flex flex-wrap  border-bottom border-secondary">
         <span class="col-3 justify-content-center align-items-center p-2 text-center smallDeviceHideColumnTable"><strong>Nombre</strong></span>
@@ -16,7 +20,7 @@
             <span class="col-md-2 justify-content-center d-flex text-center p-2">@worker.Salary</span>
             <span class="col-md-2 justify-content-center d-flex text-center p-2">@worker.StartOfWork.ToShortDateString()</span>
             <div class="col-md-2 d-flex flex-wrap justify-content-center">
-                <MatButton Class="col-12" Style="" Raised="true">Editar</MatButton>
+                <MatButtonLink Class="col-12" Style="" Raised="true" Href="/Worker/Update">Editar</MatButtonLink>
                 <MatButton Class="col-12" Style="" Dense="true">Elimminar</MatButton>
             </div>
         </div>

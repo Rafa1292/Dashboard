@@ -1,4 +1,5 @@
 ﻿@page "/DebitType/Index"
+@inject IRepository _repository
 
 <IndexDebitTypeComponent DebitTypes="debitTypes"/>
 
@@ -12,9 +13,7 @@
 
     private void GetDebitTypes()
     {
-        debitTypes.Add(new DebitTypeVM() { Description = "Insumo" });
-        debitTypes.Add(new DebitTypeVM() { Description = "Salario" });
-        debitTypes.Add(new DebitTypeVM() { Description = "Gasto Fijo" });
+        debitTypes = _repository.GetDebitTypes();
 
     }
 
