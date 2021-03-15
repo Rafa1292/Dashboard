@@ -1,8 +1,14 @@
 ﻿@page "/Worker/Update"
+@inject IMatToaster Toaster
 
-<UpdateWorkerComponent Worker="worker"/>
+<UpdateWorkerComponent Worker="worker" Save="Save"/>
 
 @code {
     private WorkerVM worker = new WorkerVM();
 
+    private async Task Save()
+    {
+        Toaster.Add("Cliente agregado", MatToastType.Success, "Listo", "");
+
+    }
 }

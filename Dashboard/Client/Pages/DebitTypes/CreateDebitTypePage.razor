@@ -1,7 +1,14 @@
 ﻿@page "/DebitType/Create"
+@inject IMatToaster Toaster
 
-<CreateDebitTypeComponent DebitType="debitType" />
+<CreateDebitTypeComponent DebitType="debitType" Save="Save" />
 
 @code {
     private DebitTypeVM debitType = new DebitTypeVM();
+
+    private async Task Save()
+    {
+        Toaster.Add("Cliente agregado", MatToastType.Success, "Listo", "");
+
+    }
 }

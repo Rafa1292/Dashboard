@@ -5,11 +5,13 @@
         <MatTextField @bind-Value="PayMethod.Description" Label="Descripcion"></MatTextField>
     </p>
     <div class="col-12 d-flex flex-wrap justify-content-center">
-        <MatButton Class="col-md-6" Style="" Raised="true">Guardar</MatButton>
+        <MatButton Class="col-md-6" Style="" Raised="true" OnClick="Save">Guardar</MatButton>
         <MatButtonLink Href="/PayMethod/Index" Class="col-md-6" Style="" Dense="true">Volver</MatButtonLink>
     </div>
 </EditForm>
 
 @code {
     [Parameter] public PayMethodVM PayMethod { get; set; }
+        [Parameter] public EventCallback Save { get; set; }
+
 }

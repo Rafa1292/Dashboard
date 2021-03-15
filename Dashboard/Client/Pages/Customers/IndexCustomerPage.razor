@@ -1,7 +1,8 @@
 ﻿@page "/Customer/Index"
-@inject IRepository _repository 
+@inject IRepository _repository
+@inject IMatToaster Toaster
 
-<IndexCustomerComponent Customers="customers"/>
+<IndexCustomerComponent Customers="customers" Delete="Delete"/>
 
 @code{
 
@@ -15,6 +16,12 @@
     private void GetCustomers()
     {
         customers = _repository.GetCustomers();
+
+    }
+
+    private async Task Delete()
+    {
+        Toaster.Add("Cliente eliminado", MatToastType.Success, "Eliminado", "");
 
     }
 }

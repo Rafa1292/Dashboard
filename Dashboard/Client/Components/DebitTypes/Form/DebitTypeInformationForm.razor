@@ -5,11 +5,13 @@
         <MatTextField @bind-Value="DebitType.Description" Label="Descripcion"></MatTextField>
     </p>
     <div class="col-12 d-flex flex-wrap justify-content-center">
-        <MatButton Class="col-md-6" Style="" Raised="true">Guardar</MatButton>
+        <MatButton Class="col-md-6" Style="" Raised="true" OnClick="Save">Guardar</MatButton>
         <MatButtonLink Href="/DebitType/Index" Class="col-md-6" Style="" Dense="true">Volver</MatButtonLink>
     </div>
 </EditForm>
 
 @code {
     [Parameter] public DebitTypeVM DebitType { get; set; }
+        [Parameter] public EventCallback Save { get; set; }
+
 }

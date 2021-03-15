@@ -1,8 +1,9 @@
 ﻿
-<WorkerInformationForm Worker="Worker" />
+<WorkerInformationForm Worker="Worker" Save="Save"/>
 
 
 @code{
     [Parameter] public WorkerVM Worker { get; set; }
+        [Parameter] public EventCallback Save { get; set; }
 
 }

@@ -1,7 +1,9 @@
 ﻿
 
-<DebitTypeInformationForm DebitType="DebitType"/>
+<DebitTypeInformationForm DebitType="DebitType" Save="Save"/>
 
 @code {
     [Parameter] public DebitTypeVM DebitType { get; set; }
+        [Parameter] public EventCallback Save { get; set; }
+
 }

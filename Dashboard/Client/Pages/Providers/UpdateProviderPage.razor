@@ -1,8 +1,14 @@
 ﻿@page "/Provider/Update"
+@inject IMatToaster Toaster
 
-<CreateProviderComponent Provider="provider" />
+<CreateProviderComponent Provider="provider" Save="Save"/>
 
 @code {
     private ProviderVM provider = new ProviderVM();
 
+    private async Task Save()
+    {
+        Toaster.Add("Cliente agregado", MatToastType.Success, "Listo", "");
+
+    }
 }

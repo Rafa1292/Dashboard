@@ -1,8 +1,6 @@
 ﻿<div class="col-12 d-flex flex-wrap justify-content-center p-4">
     <h4 class="col-12 text-center font-weight-bold text-black-50">Trabajadores</h4>
-    <a href="/Worker/Create">
-        <MatButton Outlined="true" TrailingIcon="add">Agregar</MatButton>
-    </a>
+        <MatButtonLink href="/Worker/Create" Outlined="true" TrailingIcon="add">Agregar</MatButtonLink>
 </div>
 <div class="col-md-8 d-flex flex-wrap p-2 mat-elevation-z6 ">
     <div class="col-12 p-2 m-0 d-flex flex-wrap  border-bottom border-secondary">
@@ -21,7 +19,7 @@
             <span class="col-md-2 justify-content-center d-flex text-center p-2">@worker.StartOfWork.ToShortDateString()</span>
             <div class="col-md-2 d-flex flex-wrap justify-content-center">
                 <MatButtonLink Class="col-12" Style="" Raised="true" Href="/Worker/Update">Editar</MatButtonLink>
-                <MatButton Class="col-12" Style="" Dense="true">Elimminar</MatButton>
+                <MatButton Class="col-12" Style="" Dense="true" OnClick="Delete">Elimminar</MatButton>
             </div>
         </div>
 
@@ -34,4 +32,6 @@
 
 @code {
     [Parameter] public List<WorkerVM> Workers { get; set; }
+        [Parameter] public EventCallback Delete { get; set; }
+
 }

@@ -1,8 +1,9 @@
 ﻿@page "/Worker/Index"
 @inject IRepository _repository
+@inject IMatToaster Toaster
 
 
-<IndexWorkerComponent Workers="workers" />
+<IndexWorkerComponent Workers="workers" Delete="Delete"/>
 
 @code {
     private List<WorkerVM> workers = new List<WorkerVM>();
@@ -14,6 +15,12 @@
 
     private void GetCustomers()
     {
-       workers = _repository.GetWorkers();
+        workers = _repository.GetWorkers();
+    }
+
+    private async Task Delete()
+    {
+        Toaster.Add("Cliente eliminado", MatToastType.Success, "Eliminado", "");
+
     }
 }

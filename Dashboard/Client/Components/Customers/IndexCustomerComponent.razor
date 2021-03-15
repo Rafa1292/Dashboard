@@ -1,8 +1,6 @@
 ﻿<div class="col-12 d-flex flex-wrap justify-content-center p-4">
     <h4 class="col-12 text-center font-weight-bold text-black-50">Clientes</h4>
-    <a href="/Customer/Create">
-        <MatButton Outlined="true"  TrailingIcon="add">Agregar</MatButton>
-    </a>
+        <MatButtonLink Outlined="true" Href="/Customer/Create"  TrailingIcon="add">Agregar</MatButtonLink>
 </div>
 
 <div class="col-md-8 d-flex flex-wrap p-2 mat-elevation-z6">
@@ -19,7 +17,7 @@
             <span class="col-md-3 justify-content-center d-flex align-items-center p-2">@customer.MaxAmount</span>
             <div class="col-md-3 d-flex flex-wrap justify-content-center">
                 <MatButtonLink Class="col-12" Style="" Raised="true" Href="/Customer/Update">Editar</MatButtonLink>
-                <MatButton  Class="col-12" Style="" Dense="true">Elimminar</MatButton>
+                <MatButton  Class="col-12" Style="" Dense="true" OnClick="Delete">Elimminar</MatButton>
             </div>
         </div>
 
@@ -32,4 +30,5 @@
 
 @code {
     [Parameter] public List<CustomerVM> Customers { get; set; }
+    [Parameter] public EventCallback Delete { get; set; }
 }

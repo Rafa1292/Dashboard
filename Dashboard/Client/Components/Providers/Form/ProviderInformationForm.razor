@@ -13,11 +13,13 @@
     </p>
 
     <div class="col-12 d-flex flex-wrap justify-content-center">
-        <MatButton Class="col-md-6" Style="" Raised="true">Guardar</MatButton>
+        <MatButton Class="col-md-6" Style="" Raised="true" OnClick="Save">Guardar</MatButton>
         <MatButtonLink Href="/Provider/Index" Class="col-md-6" Style="" Dense="true">Volver</MatButtonLink>
     </div>
 </EditForm>
 
 @code {
     [Parameter] public ProviderVM Provider { get; set; }
+        [Parameter] public EventCallback Save { get; set; }
+
 }

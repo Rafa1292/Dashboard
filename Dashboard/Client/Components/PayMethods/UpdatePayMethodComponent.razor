@@ -1,7 +1,9 @@
 ﻿
 
-<PayMethodInformationForm PayMethod="PayMethod" />
+<PayMethodInformationForm PayMethod="PayMethod" Save="Save" />
 
 @code {
     [Parameter] public PayMethodVM PayMethod { get; set; }
+        [Parameter] public EventCallback Save { get; set; }
+
 }

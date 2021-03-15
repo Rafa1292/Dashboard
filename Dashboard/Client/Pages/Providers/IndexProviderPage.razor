@@ -1,7 +1,8 @@
 ﻿@page "/Provider/Index"
 @inject IRepository _repository
+@inject IMatToaster Toaster
 
-<IndexProviderComponent Providers="providers" />
+<IndexProviderComponent Providers="providers" Delete="Delete"/>
 
 @code {
     private List<ProviderVM> providers = new List<ProviderVM>();
@@ -14,5 +15,11 @@
     private void GetCustomers()
     {
         providers = _repository.GetProviders();
+    }
+
+    private async Task Delete()
+    {
+        Toaster.Add("Cliente eliminado", MatToastType.Success, "Eliminado", "");
+
     }
 }

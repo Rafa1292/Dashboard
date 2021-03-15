@@ -1,8 +1,15 @@
 ﻿@page "/Customer/Update"
+@inject IMatToaster Toaster
 
-<UpdateCustomerComponent Customer="customer"/>
+<UpdateCustomerComponent Customer="customer" Save="Save" />
 
 @code {
     private CustomerVM customer = new CustomerVM();
 
+
+    private async Task Save()
+    {
+        Toaster.Add("Cliente agregado", MatToastType.Success, "Listo", "");
+
+    }
 }

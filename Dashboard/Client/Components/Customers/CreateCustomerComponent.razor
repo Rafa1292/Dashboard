@@ -1,8 +1,9 @@
 ﻿
 
 
-<CustomerInformationForm Customer="Customer" />
+<CustomerInformationForm Customer="Customer" Save="Save"/>
 
 @code {
     [Parameter] public CustomerVM Customer { get; set; }
+    [Parameter] public EventCallback Save { get; set; }
 }

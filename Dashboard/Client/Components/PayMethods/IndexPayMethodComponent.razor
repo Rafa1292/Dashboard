@@ -1,8 +1,6 @@
 ﻿<div class="col-12 d-flex flex-wrap justify-content-center p-4">
     <h4 class="col-12 text-center font-weight-bold text-black-50">Metodos de pago</h4>
-    <a href="/PayMethod/Create">
-        <MatButton Outlined="true" TrailingIcon="add">Agregar</MatButton>
-    </a>
+        <MatButtonLink href="/PayMethod/Create" Outlined="true" TrailingIcon="add">Agregar</MatButtonLink>
 </div>
 <div class="col-md-6 p-2 mat-elevation-z6 ">
     @foreach (var payMethod in PayMethods)
@@ -15,7 +13,7 @@
             </span>
             <div class="col-md-4 d-flex flex-wrap justify-content-center">
                 <MatButtonLink Class="col-12" Style="" Raised="true" Href="/PayMethod/Update">Editar</MatButtonLink>
-                <MatButton Class="col-12" Style="" Dense="true">Elimminar</MatButton>
+                <MatButton Class="col-12" Style="" Dense="true" OnClick="Delete">Elimminar</MatButton>
             </div>
         </div>
 
@@ -28,4 +26,6 @@
 
 @code {
     [Parameter] public List<PayMethodVM> PayMethods { get; set; }
+        [Parameter] public EventCallback Delete { get; set; }
+
 }

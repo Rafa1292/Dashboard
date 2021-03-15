@@ -1,8 +1,14 @@
 ﻿@page "/PayMethod/Update"
+@inject IMatToaster Toaster
 
-<CreatePayMethodComponent PayMethod="payMethod" />
+<CreatePayMethodComponent PayMethod="payMethod" Save="Save"/>
 
 @code {
     private PayMethodVM payMethod = new PayMethodVM();
 
+    private async Task Save()
+    {
+        Toaster.Add("Cliente agregado", MatToastType.Success, "Listo", "");
+
+    }
 }

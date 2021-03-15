@@ -27,7 +27,7 @@ namespace Dashboard.Client
             builder.Services.AddMatBlazor();
             builder.Services.AddMatToaster(config =>
             {
-                config.Position = MatToastPosition.BottomFullWidth;
+                config.Position = MatToastPosition.TopRight;
                 config.PreventDuplicates = true;
                 config.NewestOnTop = true;
                 config.ShowCloseButton = true;

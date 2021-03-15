@@ -1,7 +1,9 @@
 ﻿
 
-<ProviderInformationForm Provider="Provider" />
+<ProviderInformationForm Provider="Provider" Save="Save"/>
 
 @code {
     [Parameter] public ProviderVM Provider { get; set; }
+        [Parameter] public EventCallback Save { get; set; }
+
 }

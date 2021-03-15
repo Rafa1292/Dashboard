@@ -1,8 +1,6 @@
 ﻿<div class="col-12 d-flex flex-wrap justify-content-center p-4">
     <h4 class="col-12 text-center font-weight-bold text-black-50">Proveedores</h4>
-    <a href="/Provider/Create">
-        <MatButton Outlined="true" TrailingIcon="add">Agregar</MatButton>
-    </a>
+        <MatButtonLink href="/Provider/Create" Outlined="true" TrailingIcon="add">Agregar</MatButtonLink>
 </div>
 <div class="col-md-8 d-flex flex-wrap p-2 mat-elevation-z6 text-black-50">
     <div class="col-12 p-2 m-0 d-flex flex-wrap  border-bottom border-secondary">
@@ -16,7 +14,7 @@
             <span class="col-md-4 justify-content-center d-flex align-items-center p-2">@customer.Phone</span>
             <div class="col-md-4 d-flex flex-wrap justify-content-center">
                 <MatButtonLink Class="col-12" Style="" Raised="true" Href="/Provider/Update">Editar</MatButtonLink>
-                <MatButton Class="col-12" Style="" Dense="true">Elimminar</MatButton>
+                <MatButton Class="col-12" Style="" Dense="true" OnClick="Delete">Elimminar</MatButton>
             </div>
         </div>
 
@@ -29,4 +27,6 @@
 
 @code {
     [Parameter] public List<ProviderVM> Providers { get; set; }
+        [Parameter] public EventCallback Delete { get; set; }
+
 }

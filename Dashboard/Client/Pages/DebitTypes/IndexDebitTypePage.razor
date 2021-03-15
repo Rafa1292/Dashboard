@@ -1,7 +1,8 @@
 ﻿@page "/DebitType/Index"
 @inject IRepository _repository
+@inject IMatToaster Toaster
 
-<IndexDebitTypeComponent DebitTypes="debitTypes"/>
+<IndexDebitTypeComponent DebitTypes="debitTypes" Delete="Delete"/>
 
 @code {
     private List<DebitTypeVM> debitTypes = new List<DebitTypeVM>();
@@ -14,6 +15,12 @@
     private void GetDebitTypes()
     {
         debitTypes = _repository.GetDebitTypes();
+
+    }
+
+    private async Task Delete()
+    {
+        Toaster.Add("Cliente eliminado", MatToastType.Success, "Eliminado", "");
 
     }
 

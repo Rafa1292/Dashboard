@@ -1,7 +1,8 @@
 ﻿@page "/PayMethod/Index"
 @inject IRepository _repository
+@inject IMatToaster Toaster
 
-<IndexPayMethodComponent PayMethods="payMethods" />
+<IndexPayMethodComponent PayMethods="payMethods" Delete="Delete" />
 
 @code {
     private List<PayMethodVM> payMethods = new List<PayMethodVM>();
@@ -14,5 +15,11 @@
     private void GetPayMethods()
     {
         payMethods = _repository.GetPayMethods();
+    }
+
+    private async Task Delete()
+    {
+        Toaster.Add("Cliente eliminado", MatToastType.Success, "Eliminado", "");
+
     }
 }
