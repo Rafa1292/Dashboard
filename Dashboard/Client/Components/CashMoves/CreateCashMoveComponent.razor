@@ -1,0 +1,103 @@
+﻿<div class=" col-12 d-flex flex-wrap justify-content-center p-0">
+
+    <EditForm Model="CashMove" Class="flex-wrap d-flex col-12 justify-content-center py-4 my-4" style="border: 2px solid rgba(0,0,0,.2); border-radius: 10px; align-items: flex-end;">
+
+        @if (Providers != null && Workers != null)
+        {
+            <p class="p-2 col-xl-2 d-flex justify-content-center">
+                <MatRadioGroup @bind-Value="@debtCollector" Context="_context" Items="@debtCollectorOptions">
+                    <ItemTemplate>
+                        <div>
+                            <MatRadioButton Value="@_context">@_context</MatRadioButton>
+                        </div>
+                    </ItemTemplate>
+                </MatRadioGroup>
+            </p>
+
+            @if (debtCollector == "Proveedor")
+            {
+                <p class="p-2">
+                    <MatSelectItem @bind-Value="CashMove.Provider" Label="Proovedor" Context="_context" Items="@Providers">
+                        <ItemTemplate>
+                            <span>@_context?.Name</span>
+                        </ItemTemplate>
+                    </MatSelectItem>
+                </p>
+            }
+            else
+            {
+                <p class="p-2">
+                    <MatSelectItem @bind-Value="CashMove.Worker" Label="Colaborador" Context="_context" Items="@Workers">
+                        <ItemTemplate>
+                            <span>@_context?.Name</span>
+                        </ItemTemplate>
+                    </MatSelectItem>
+                </p>
+            }
+        }
+
+        @if (PayMethods != null)
+        {
+            <p class="p-2">
+                <MatSelectItem @bind-Value="CashMove.PayMethod" Label="Forma de pago" Context="_context" Items="@PayMethods">
+                    <ItemTemplate>
+                        <span>@_context?.Description</span>
+                    </ItemTemplate>
+                </MatSelectItem>
+            </p>
+        }
+
+        @if (Customers != null)
+        {
+            <p class="p-2">
+                <MatSelectItem @bind-Value="CashMove.Customer" Label="Clientes" Context="_context" Items="@Customers">
+                    <ItemTemplate>
+                        <span>@_context?.Name</span>
+                    </ItemTemplate>
+                </MatSelectItem>
+            </p>
+
+            <p class="p-2">
+                <MatNumericUpDownField Class="m-0" Label="# Factura" FullWidth="true" @bind-Value=@CashMove.TicketNumber DecimalPlaces=0>
+                </MatNumericUpDownField>
+            </p>
+        }
+
+        <p class="p-2">
+            <MatNumericUpDownField Class="m-0" Label="Monto" FullWidth="true" @bind-Value=@CashMove.Amount DecimalPlaces=0>
+            </MatNumericUpDownField>
+        </p>
+
+        @if (Description)
+        {
+            <p class="p-2">
+                <MatTextField Class="m-0" @bind-Value="CashMove.Description" TextArea="true" Label="Descripcion"></MatTextField>
+            </p>
+        }
+
+
+
+        <div class="col-12 d-flex flex-wrap my-4 justify-content-center">
+            <MatButton Class="col-md-4" Style="" @onclick="Save" Raised="true">Agregar</MatButton>
+        </div>
+    </EditForm>
+
+</div>
+
+
+@code {
+    [Parameter] public List<CashMoves> CashMoves { get; set; }
+    [Parameter] public CashMoves CashMove { get; set; }
+    [Parameter] public List<ProviderVM> Providers { get; set; }
+    [Parameter] public List<WorkerVM> Workers { get; set; }
+    [Parameter] public List<PayMethodVM> PayMethods { get; set; }
+    [Parameter] public List<CustomerVM> Customers { get; set; }
+    [Parameter] public List<DebitTypeVM> DebitTypes { get; set; }
+    [Parameter] public EventCallback Save { get; set; }
+    [Parameter] public bool Description { get; set; }
+
+    private string debtCollector = "Proveedor";
+    private string[] debtCollectorOptions = { "Proveedor", "Trabajador" };
+
+}
+

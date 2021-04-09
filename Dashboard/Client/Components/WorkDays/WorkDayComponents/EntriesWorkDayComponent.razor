@@ -1,0 +1,66 @@
+﻿<div class="col-12 d-flex flex-wrap justify-content-center p-0">
+
+    <CreateCashMoveComponent CashMove="entry"
+                             CashMoves="CashMoves"
+                             Description="true"
+                             PayMethods="payMethods"
+                             Save="Save" />
+
+
+    @if (CashMoves.Count > 0)
+    {
+        <IndexCashMoveComponent CashMoves="CashMoves" Decription="true" PayMethod="true" />
+
+    }
+</div>
+
+
+@code {
+    public List<CashMoves> CashMoves = new List<CashMoves>();
+    private EntryVM entry = new EntryVM();
+    private List<EntryVM> entries = new List<EntryVM>();
+    private List<PayMethodVM> payMethods = new List<PayMethodVM>();
+
+
+
+    protected override void OnInitialized()
+    {
+        AddPayMethods();
+
+
+        entries.Add(new EntryVM()
+        {
+            Amount = 50000,
+            Description = "bcr => Bac",
+            PayMethod = payMethods.Find(x => x.Description == "Transferencia")
+        });
+        entries.Add(new EntryVM()
+        {
+            Amount = 10000,
+            Description = "Ingreso para proveedores",
+            PayMethod = payMethods.Find(x => x.Description == "Efectivo")
+        });
+
+        CashMoves.AddRange(entries);
+    }
+
+
+    private void AddPayMethods()
+    {
+        payMethods.Add(new PayMethodVM() { Description = "Tarjeta" });
+        payMethods.Add(new PayMethodVM() { Description = "Efectivo" });
+        payMethods.Add(new PayMethodVM() { Description = "Transferencia" });
+
+    }
+
+
+    private void Save()
+    {
+        CashMoves.Add(entry);
+        entry = new EntryVM();
+    }
+
+
+
+}
+

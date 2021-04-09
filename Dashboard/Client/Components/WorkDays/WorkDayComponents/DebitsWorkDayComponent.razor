@@ -1,0 +1,96 @@
+﻿<div class="col-12 d-flex flex-wrap justify-content-center p-0">
+
+    <CreateCashMoveComponent CashMove="debit"
+                             CashMoves="CashMoves"
+                             DebitTypes="debitTypes"
+                             PayMethods="payMethods"
+                             Providers="providers"
+                             Save="Save"
+                             Description="true"
+                             Workers="workers" />
+
+
+    @if (CashMoves.Count > 0)
+    {
+        <IndexCashMoveComponent CashMoves="CashMoves" Customer="false" TicketNumber="false" Decription="true" PayMethod="true" Provider="true" Worker="true" />
+
+    }
+</div>
+
+
+@code {
+    public List<CashMoves> CashMoves = new List<CashMoves>();
+    private DebitVM debit = new DebitVM();
+    private List<DebitVM> debits = new List<DebitVM>();
+    private List<ProviderVM> providers = new List<ProviderVM>();
+    private List<WorkerVM> workers = new List<WorkerVM>();
+    private List<PayMethodVM> payMethods = new List<PayMethodVM>();
+    private List<DebitTypeVM> debitTypes = new List<DebitTypeVM>();
+
+
+
+    protected override void OnInitialized()
+    {
+        AddPayMethods();
+        AddProviders();
+        AddWorkers();
+
+        debits.Add(new DebitVM()
+        {
+            Amount = 5000,
+            Description = "Pedido revisado",
+            Provider = providers.Find(x => x.Name == "La Raza"),
+            PayMethod = payMethods.Find(x => x.Description == "Efectivo")
+        });
+        debits.Add(new DebitVM()
+        {
+            Amount = 10000,
+            Description = "Pago de dia",
+            Worker = workers.Find(x => x.Name == "Kevin"),
+            PayMethod = payMethods.Find(x => x.Description == "Efectivo")
+        });
+        debits.Add(new DebitVM()
+        {
+            Amount = 190000,
+            Description = "Factura de abril",
+            Provider = providers.Find(x => x.Name == "ICE"),
+            PayMethod = payMethods.Find(x => x.Description == "Transferencia")
+        });
+        CashMoves.AddRange(debits);
+    }
+
+    private void AddProviders()
+    {
+        providers.Add(new ProviderVM() { Name = "CAE" });
+        providers.Add(new ProviderVM() { Name = "La Raza" });
+        providers.Add(new ProviderVM() { Name = "Sigma" });
+        providers.Add(new ProviderVM() { Name = "Coca-Cola" });
+        providers.Add(new ProviderVM() { Name = "ICE" });
+
+    }
+
+    private void AddPayMethods()
+    {
+        payMethods.Add(new PayMethodVM() { Description = "Tarjeta" });
+        payMethods.Add(new PayMethodVM() { Description = "Efectivo" });
+        payMethods.Add(new PayMethodVM() { Description = "Transferencia" });
+
+    }
+
+    private void AddWorkers()
+    {
+        workers.Add(new WorkerVM() { Name = "Rafa" });
+        workers.Add(new WorkerVM() { Name = "Mari" });
+        workers.Add(new WorkerVM() { Name = "Kevin" });
+    }
+
+    private void Save()
+    {
+        CashMoves.Add(debit);
+        debit = new DebitVM();
+    }
+
+
+
+}
+

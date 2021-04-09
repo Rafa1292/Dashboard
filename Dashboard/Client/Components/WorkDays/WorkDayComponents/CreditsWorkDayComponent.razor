@@ -1,0 +1,94 @@
+﻿<div class="col-12 d-flex flex-wrap justify-content-center p-0">
+
+    <CreateCashMoveComponent CashMove="credit"
+                             Description="true"
+                             CashMoves="CashMoves"
+                             Customers="customers"
+                             Save="Save" />
+
+    <div class="col-lg-6">
+
+        @if (CashMoves.Count > 0)
+        {
+            <IndexCashMoveComponent Decription="true" CashMoves="CashMoves" Customer="true" TicketNumber="true" />
+
+        }
+    </div>
+</div>
+
+
+@code {
+    public List<CashMoves> CashMoves = new List<CashMoves>();
+    private CreditVM credit = new CreditVM();
+    private List<CreditVM> credits = new List<CreditVM>();
+    private List<CustomerVM> customers = new List<CustomerVM>();
+
+
+
+    protected override void OnInitialized()
+    {
+        AddCustomers();
+
+        credits.Add(new CreditVM()
+        {
+            Customer = customers.Find(x => x.Name == "Tiernita"),
+            TicketNumber = 47,
+            Amount = 5000,
+            Description = "gsgss"
+        });
+        credits.Add(new CreditVM()
+        {
+            Customer = customers.Find(x => x.Name == "Carie"),
+            TicketNumber = 107,
+            Amount = 10000,
+            Description = "gsgss"
+        });
+        credits.Add(new CreditVM()
+        {
+            Customer = customers.Find(x => x.Name == "Valentin"),
+            TicketNumber = 92,
+            Amount = 190000,
+            Description = "gsgss"
+        });
+        CashMoves.AddRange(credits);
+    }
+
+
+    private void Save()
+    {
+        CashMoves.Add(credit);
+        credit = new CreditVM();
+    }
+
+    private void AddCustomers()
+    {
+        customers.Add(new CustomerVM()
+        {
+            Name = "Tiernita"
+        });
+
+        customers.Add(new CustomerVM()
+        {
+            Name = "Carie"
+        });
+
+        customers.Add(new CustomerVM()
+        {
+            Name = "Mini ensalada"
+        });
+
+        customers.Add(new CustomerVM()
+        {
+            Name = "Perez sinpe"
+        });
+
+        customers.Add(new CustomerVM()
+        {
+            Name = "Valentin"
+        });
+    }
+
+}
+
+
+

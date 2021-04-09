@@ -1,0 +1,66 @@
+﻿<MatTable Items="@CashMoves" PageSize="200" Striped="true" ShowPaging="false" Context="_context" class="mat-elevation-z1 p-0">
+    <MatTableHeader>
+        @{
+
+            if (Customer || Provider || Worker)
+            {
+                <th class="">Nombre</th>
+            }
+
+            if (PayMethod)
+            {
+                <th class="text-center" style="">Metodo de pago</th>
+            }
+
+            <th class="" style="">Monto</th>
+
+            if (TicketNumber)
+            {
+                <th class="text-center"># Factura</th>
+            }
+
+            if (Decription)
+            {
+                <th class="">Descripcion</th>
+            }
+        }
+    </MatTableHeader>
+    <MatTableRow>
+
+        @if (Customer || Provider || Worker)
+        {
+            <td class="">@_context?.Customer?.Name @_context?.Provider?.Name @_context?.Worker?.Name</td>
+        }
+
+
+        @if (PayMethod)
+        {
+            <td class="">@_context?.PayMethod?.Description</td>
+
+        }
+        <td class="">@_context?.Amount</td>
+
+        @if (TicketNumber)
+        {
+            <td class="">@_context?.TicketNumber</td>
+        }
+
+        @if (Decription)
+        {
+            <td class="">@_context?.Description</td>
+        }
+    </MatTableRow>
+</MatTable>
+
+
+@code {
+    [Parameter] public List<CashMoves> CashMoves { get; set; }
+    [Parameter] public bool Decription { get; set; } = false;
+    [Parameter] public bool TicketNumber { get; set; } = false;
+    [Parameter] public bool Customer { get; set; } = false;
+    [Parameter] public bool Provider { get; set; } = false;
+    [Parameter] public bool Worker { get; set; } = false;
+    [Parameter] public bool PayMethod { get; set; } = false;
+
+
+}

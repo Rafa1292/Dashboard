@@ -1,0 +1,11 @@
+﻿@foreach (var day in Days)
+{
+    <div class="border border-light text-center d-flex align-items-center justify-content-center" style="width: 14%; min-height: 40px ">
+        <strong>
+            @day.Name
+        </strong>
+    </div>
+}
+@code {
+    [Parameter] public List<CalendarDayDTO> Days { get; set; }
+}

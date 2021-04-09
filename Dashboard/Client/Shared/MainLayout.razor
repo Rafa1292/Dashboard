@@ -9,9 +9,6 @@
                     <MatIconButton Icon="menu" OnClick="@(()=> Open())"></MatIconButton>
                     <MatAppBarTitle>Nebulosa</MatAppBarTitle>
                 </MatAppBarSection>
-                <MatAppBarSection Align="@MatAppBarSectionAlign.End">
-                    <MatIconButton Icon="user"></MatIconButton>
-                </MatAppBarSection>
             </MatAppBarRow>
         </MatAppBar>
         <MatAppBarContent>
@@ -40,7 +37,7 @@
 
     MatTheme theme1 = new MatTheme()
     {
-        Primary = MatThemeColors.Teal._800.Value,
+        Primary = MatThemeColors.BlueGrey._900.Value,
         Secondary = MatThemeColors.BlueGrey._500.Value
     };
 
