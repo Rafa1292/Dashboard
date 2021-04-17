@@ -5,11 +5,15 @@
         <MatTextField @bind-Value="Provider.Name" Label="Nombre" FullWidth="true"></MatTextField>
     </p>
     <p class=" my-4">
-        <MatNumericUpDownField Label="Telefono" 
+        <MatNumericUpDownField Label="Telefono"
                                FullWidth="true"
                                @bind-Value=@Provider.Phone
                                DecimalPlaces=0>
         </MatNumericUpDownField>
+    </p>
+
+    <p class=" my-4 d-flex" style="justify-content: space-evenly;">
+        <MatSlideToggle TValue="bool" @bind-Value="Provider.FixedExpense" Label="Gasto fijo"></MatSlideToggle>
     </p>
 
     <div class="col-12 d-flex flex-wrap justify-content-center">

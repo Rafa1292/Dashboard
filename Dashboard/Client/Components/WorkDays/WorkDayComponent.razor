@@ -6,18 +6,121 @@
     </h4>
 </div>
 
-<MatTabGroup Class="col-lg-12 p-0">
-    <MatTab Label="Retiros">
-        <DebitsWorkDayComponent />
-    </MatTab>
-    <MatTab Label="Ingresos">
-        <EntriesWorkDayComponent />
-    </MatTab>
-    <MatTab Label="Credito">
-        <CreditsWorkDayComponent/>
-    </MatTab>
-    <MatTab Label="Cierre">
-        Third Content
-    </MatTab>
+@if (!loader)
+{
 
-</MatTabGroup>
+
+    <MatTabGroup Class="col-lg-12 p-0">
+        <MatTab Label="Retiros">
+            <DebitsWorkDayComponent />
+        </MatTab>
+        <MatTab Label="Ingresos">
+            <EntriesWorkDayComponent />
+        </MatTab>
+        <MatTab Label="Credito">
+            <CreditsWorkDayComponent />
+        </MatTab>
+        <MatTab Label="Cierre">
+            <CloseWorkDayComponent WorkDay="workDay" workDays="workDays" Save="Save"/>
+        </MatTab>
+
+    </MatTabGroup>
+}
+
+
+@code {
+    private WorkDayVM workDay = new WorkDayVM();
+    private List<WorkDayVM> workDays = new List<WorkDayVM>();
+    private bool loader = true;
+
+    protected override void OnInitialized()
+    {
+        workDays.Add(new WorkDayVM()
+        {
+            InitialCash = 50000,
+            TotalSales = 120000,
+            Entries = GetEntries(0),
+            Credits = GetCredits(10000),
+            Debits = GetDebits(56000),
+            TotalCard = 20000,
+            TotalSinpe = 15000,
+            TotalTransfer = 0,
+            FinalCash = 65000,
+            Missing = 65000 - (50000 + 120000 - 10000 - 56000 - 20000 - 15000)
+        });
+
+        workDays.Add(new WorkDayVM()
+        {
+            InitialCash = 40000,
+            TotalSales = 150000,
+            Entries = GetEntries(0),
+            Credits = GetCredits(20000),
+            Debits = GetDebits(98000),
+            TotalCard = 20000,
+            TotalSinpe = 0,
+            TotalTransfer = 0,
+            FinalCash = 65000,
+            Missing = 2000
+        });
+
+        workDays.Add(new WorkDayVM()
+        {
+            InitialCash = 90000,
+            TotalSales = 256000,
+            Entries = GetEntries(0),
+            Credits = GetCredits(0000),
+            Debits = GetDebits(70000),
+            TotalCard = 125000000,
+            TotalSinpe = 0,
+            TotalTransfer = 0,
+            FinalCash = 65000,
+            Missing = -6000
+        });
+
+        loader = false;
+        StateHasChanged();
+    }
+
+    private List<EntryVM> GetEntries(int amount)
+    {
+        List<EntryVM> entries = new List<EntryVM>();
+        entries.Add(new EntryVM()
+        {
+            Amount = amount,
+        });
+
+        return entries;
+    }
+
+    private List<DebitVM> GetDebits(int amount)
+    {
+        List<DebitVM> debits = new List<DebitVM>();
+        debits.Add(new DebitVM()
+        {
+            Amount = amount,
+        });
+
+        return debits;
+    }
+
+    private List<CreditVM> GetCredits(int amount)
+    {
+        List<CreditVM> credits = new List<CreditVM>();
+        credits.Add(new CreditVM()
+        {
+            Amount = amount,
+        });
+
+        return credits;
+    }
+
+    private void Save()
+    {
+        workDay.Entries = GetEntries(20000);
+        workDay.Debits = GetDebits(12000);
+        workDay.Credits = GetCredits(0);
+        workDays.Add(workDay);
+        workDay = new WorkDayVM();
+        
+    }
+} 

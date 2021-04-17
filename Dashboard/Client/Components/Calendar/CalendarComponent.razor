@@ -1,4 +1,5 @@
-﻿
+﻿@inject IRepository _repository
+
 
 @if (loader)
 {
@@ -7,155 +8,80 @@
 }
 else
 {
-    if (month == null)
-    {
-        month = months.Find(x => x.Id == DateTime.Now.Month);
-    }
+    <div class="col-12 p-0 m-0 d-flex flex-wrap">
 
-    if (year == null)
-    {
-        year = DateTime.Now.Year.ToString();
-    }
-<div class="col-12 p-0 m-0 d-flex flex-wrap">
+        <CalendarFilterComponent Today="Today" month="month" ChangeMonth="ChangeMonth" ChangeYear="ChangeYear" Months="months" year="year" Years="years"/>
+        <DaysLegendComponent  />
+        <CalendarDaysComponent Days="days" />
 
-    <div class="col-12 d-flex flex-wrap justify-content-center align-items-baseline">
-        <MatSelectItem @bind-Value="month" Items="@months">
-            <ItemTemplate>
-                <span>@context?.Name</span>
-            </ItemTemplate>
-        </MatSelectItem>
-        <p class="mx-2">
-            <MatSelectValue @bind-Value="@year" Items="@years" ValueSelector=@(i=>i.ToString())></MatSelectValue>
-        </p>
-        <MatButton Dense="true" OnClick="Today">Ir a fecha actual</MatButton>
+
+
     </div>
-
-    @{
-        firstOfMonth = new DateTime(int.Parse(year), month.Id, 1);
-        daysBefore = (int)(firstOfMonth.AddDays(-1)).DayOfWeek;
-        lastOfMonth = new DateTime(int.Parse(year), month.Id, 1).AddMonths(1).AddDays(-1);
-        daysAfter = 7 - (int)lastOfMonth.DayOfWeek;
-        daysAfter = daysAfter == 7 ? 0 : daysAfter;
-        currentDay = 0;
-
-        if (month.Id == currentMonth && currentYear == int.Parse(year))
-        {
-            shadow = "box-shadow: 0px 0px 10px 1px rgba(0,0,0,.2);";
-            currentDay = DateTime.Now.Day;
-        }
-
-        <DaysLegendComponent Days="days" />
-        <CalendarDaysComponent Disabled="true" TotalDays="daysBefore" />
-        <CalendarDaysComponent Disabled="false" TotalDays="month.MonthLength" CurrentDayStyle="@shadow" CurrentDay="currentDay" />
-        <CalendarDaysComponent Disabled="true" TotalDays="daysAfter" />
-    }
-
-
-</div>
 }
 @code {
-    bool loader = true;
-    DateTime date;
-    DateTime firstOfMonth;
-    DateTime lastOfMonth;
-    MonthDTO month;
-    List<int> years = new List<int>();
-    string year = "2021";
-    int daysBefore;
-    int daysAfter;
-    int currentMonth = DateTime.Now.Month;
-    int currentYear = DateTime.Now.Year;
-    int currentDay = 0;
-    string shadow = "";
-
-    private List<CalendarDayDTO> days = new List<CalendarDayDTO>();
+    private bool loader = true;
+    private MonthDTO month;
+    private int year;
+    private List<int> years = new List<int>();
     private List<MonthDTO> months = new List<MonthDTO>();
+    private List<DayVM> days = new List<DayVM>();
 
     protected override void OnInitialized()
     {
-        fillDays();
-        fillMonths();
-        fillYears();
+        year = DateTime.Now.Year;
+        years = _repository.FillYears();
+        months = _repository.FillMonths(year);
         month = months.Find(x => x.Id == DateTime.Now.Month);
+        FillDays();
         loader = false;
     }
 
-    private void fillDays()
-    {
-        days.Add(new CalendarDayDTO()
-        {
-            Name = "Lunes",
-            DaysBefore = 0,
-            DaysAfter = 6
-        });
-        days.Add(new CalendarDayDTO()
-        {
-            Name = "Martes",
-            DaysBefore = 1,
-            DaysAfter = 5
-        });
-        days.Add(new CalendarDayDTO()
-        {
-            Name = "Miercoles",
-            DaysBefore = 2,
-            DaysAfter = 4
-        });
-        days.Add(new CalendarDayDTO()
-        {
-            Name = "Jueves",
-            DaysBefore = 3,
-            DaysAfter = 3
-        });
-        days.Add(new CalendarDayDTO()
-        {
-            Name = "Viernes",
-            DaysBefore = 4,
-            DaysAfter = 2
-        });
-        days.Add(new CalendarDayDTO()
-        {
-            Name = "Sabado",
-            DaysBefore = 5,
-            DaysAfter = 1
-        });
-        days.Add(new CalendarDayDTO()
-        {
-            Name = "Domingo",
-            DaysBefore = 6,
-            DaysAfter = 0
-        });
-    }
 
-    private void fillMonths()
-    {
-        months.Add(new MonthDTO() { MonthLength = DateTime.DaysInMonth(int.Parse(year), 1), Id = 1, Name = "Enero" });
-        months.Add(new MonthDTO() { MonthLength = DateTime.DaysInMonth(int.Parse(year), 2), Id = 2, Name = "Febrero" });
-        months.Add(new MonthDTO() { MonthLength = DateTime.DaysInMonth(int.Parse(year), 3), Id = 3, Name = "Marzo" });
-        months.Add(new MonthDTO() { MonthLength = DateTime.DaysInMonth(int.Parse(year), 4), Id = 4, Name = "Abril" });
-        months.Add(new MonthDTO() { MonthLength = DateTime.DaysInMonth(int.Parse(year), 5), Id = 5, Name = "Mayo" });
-        months.Add(new MonthDTO() { MonthLength = DateTime.DaysInMonth(int.Parse(year), 6), Id = 6, Name = "Junio" });
-        months.Add(new MonthDTO() { MonthLength = DateTime.DaysInMonth(int.Parse(year), 7), Id = 7, Name = "Julio" });
-        months.Add(new MonthDTO() { MonthLength = DateTime.DaysInMonth(int.Parse(year), 8), Id = 8, Name = "Agosto" });
-        months.Add(new MonthDTO() { MonthLength = DateTime.DaysInMonth(int.Parse(year), 9), Id = 9, Name = "Septiembre" });
-        months.Add(new MonthDTO() { MonthLength = DateTime.DaysInMonth(int.Parse(year), 10), Id = 10, Name = "Octubre" });
-        months.Add(new MonthDTO() { MonthLength = DateTime.DaysInMonth(int.Parse(year), 11), Id = 11, Name = "Noviembre" });
-        months.Add(new MonthDTO() { MonthLength = DateTime.DaysInMonth(int.Parse(year), 12), Id = 12, Name = "Diciembre" });
-
-    }
-
-    private void fillYears()
-    {
-        for (int i = 2021; i <= 2050; i++)
-        {
-            years.Add(i);
-        }
-        Console.WriteLine(years);
-    }
 
     private void Today()
     {
         month = null;
-        year = null;
+        year = 0;
     }
+
+    private void ChangeMonth(MonthDTO newMonth)
+    {
+        loader = true;
+        month = newMonth;
+        FillDays();
+        loader = false;
+    }
+
+    private void ChangeYear(int newYear)
+    {
+        loader = true;
+        year = newYear;
+        FillDays();
+        loader = false;
+    }
+
+    private void FillDays()
+    {
+        days = new List<DayVM>();
+
+        for (int i = 1; i <= month.MonthLength; i++)
+        {
+            var date = new DateTime(year, month.Id, i);
+            var day = GetDay((int)date.DayOfWeek);
+            day.Date = date;
+
+            days.Add(day);
+        }
+    }
+
+    private DayVM GetDay(int dayId)
+    {
+        dayId = dayId == 0 ? 7 : dayId;
+        DayVM day = new DayVM();
+        day = _repository.GetDays().Find(x => x.DayId == dayId);
+
+        return day;
+    }
+
 
 }

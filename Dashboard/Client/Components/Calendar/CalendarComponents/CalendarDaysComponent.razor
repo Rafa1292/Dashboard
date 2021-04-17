@@ -1,46 +1,42 @@
 ﻿
-@if (Disabled)
+
+@for (int i = 1; i <= Days.ElementAt(0).DaysBefore; i++)
 {
-    for (int i = 1; i <= TotalDays; i++)
-    {
-        <div class="border border-light d-flex align-items-center justify-content-center calendarDay" style="background: rgba(0,0,0,.1);"></div>
-    }
+    <a class="border border-light d-flex align-items-center justify-content-center calendarDay text-black-50 text-decoration-none" style="background: rgba(0,0,0,.1); " href="WorkDay/Create">
+    </a>
 }
-else
+
+@foreach (var day in Days)
 {
-    for (int i = 1; i <= TotalDays; i++)
-    {
-        style = CurrentDay == i ? CurrentDayStyle : "";
+    var style = DateTime.Now.Date == day.Date ? "box-shadow: 0px 0px 10px 1px rgba(0,0,0,.2);" : "";
 
-        if (i < CurrentDay)
-        {
-            style += i % 3 == 0 ? "background: rgba(176,0,32,.6);" : "background: rgba(32,201,151,.7);";
-
-        }
-
-        <div class="border position-relative border-light d-flex align-items-center justify-content-center calendarDay" style="@style">
-            <span class="calendarDay--date">
-                <small>
-                    @i
-                </small>
-            </span>
-            <div class="col-12 p-1 d-flex flex-wrap justify-content-start">
-                <CalendarDayContentComponent />
-            </div>
+    <a href="WorkDay/Create" class="border position-relative border-light d-flex align-items-center justify-content-center calendarDay text-decoration-none text-black-50" style="@style">
+        <span class="calendarDay--date">
+            <small>
+                @day.Date.Day.ToString() 
+            </small>
+        </span>
+        <div class="col-12 p-1 d-flex flex-wrap justify-content-start">
+            <CalendarDayContentComponent />
         </div>
-    }
+    </a>
+}
+
+@for (int i = 1; i <= Days.ElementAt((Days.Count - 1)).DaysAfter; i++)
+{
+    <a class="border border-light d-flex align-items-center justify-content-center calendarDay text-black-50 text-decoration-none" style="background: rgba(0,0,0,.1); " href="WorkDay/Create">
+    </a>
 }
 
 
 @code {
-    [Parameter] public int TotalDays { get; set; }
-    [Parameter] public bool Disabled { get; set; }
-    [Parameter] public int CurrentDay { get; set; }
-    [Parameter] public string CurrentDayStyle { get; set; }
-    private string style = "";
+    [Parameter] public List<DayVM> Days { get; set; }
+    private DayVM firstDay;
+    private DayVM lastDay;
+
+
 
     protected override void OnInitialized()
     {
-        base.OnInitialized();
     }
 }

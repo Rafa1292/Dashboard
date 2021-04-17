@@ -11,5 +11,7 @@ namespace Dashboard.Shared.ViewModels
         public string Name { get; set; }
 
         public int Phone { get; set; }
+
+        public bool FixedExpense { get; set; }
     }
 }

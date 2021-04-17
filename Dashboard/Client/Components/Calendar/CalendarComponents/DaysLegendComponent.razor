@@ -1,4 +1,7 @@
-﻿@foreach (var day in Days)
+﻿@inject IRepository _repository
+
+
+@foreach (var day in Days)
 {
     <div class="border border-light text-center d-flex align-items-center justify-content-center" style="width: 14%; min-height: 40px ">
         <strong>
@@ -7,5 +10,11 @@
     </div>
 }
 @code {
-    [Parameter] public List<CalendarDayDTO> Days { get; set; }
+    public List<DayVM> Days;
+
+    protected override void OnInitialized()
+    {
+        Days = _repository.GetDays();
+    }
+
 }

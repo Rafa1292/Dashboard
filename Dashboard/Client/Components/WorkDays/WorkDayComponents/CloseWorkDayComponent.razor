@@ -1,0 +1,46 @@
+﻿<div class=" col-12 d-flex flex-wrap justify-content-center p-0">
+
+    <EditForm Model="WorkDay" Class="flex-wrap d-flex col-12 justify-content-center py-4 my-4" style="border: 2px solid rgba(0,0,0,.2); border-radius: 10px; align-items: flex-end;">
+
+        <p class="p-2">
+            <MatNumericUpDownField Class="m-0" Label="Ventas" FullWidth="true" @bind-Value=@WorkDay.TotalSales DecimalPlaces=0>
+            </MatNumericUpDownField>
+        </p>
+
+        <p class="p-2">
+            <MatNumericUpDownField Class="m-0" Label="Sinpe" FullWidth="true" @bind-Value=@WorkDay.TotalSinpe DecimalPlaces=0>
+            </MatNumericUpDownField>
+        </p>
+
+        <p class="p-2">
+            <MatNumericUpDownField Class="m-0" Label="Datafono" FullWidth="true" @bind-Value=@WorkDay.TotalCard DecimalPlaces=0>
+            </MatNumericUpDownField>
+        </p>
+
+        <p class="p-2">
+            <MatNumericUpDownField Class="m-0" Label="Transferencia" FullWidth="true" @bind-Value=@WorkDay.TotalTransfer DecimalPlaces=0>
+            </MatNumericUpDownField>
+        </p>
+
+        <p class="p-2">
+            <MatNumericUpDownField Class="m-0" Label="Dinero en caja" FullWidth="true" @bind-Value=@WorkDay.FinalCash DecimalPlaces=0>
+            </MatNumericUpDownField>
+        </p>
+
+        <div class="col-12 d-flex flex-wrap my-4 justify-content-center">
+            <MatButton Class="col-md-4" Style="" @onclick="Save" Raised="true">Agregar</MatButton>
+        </div>
+    </EditForm>
+
+    <IndexWorkDayComponent WorkDays="workDays" />
+
+</div>
+
+
+@code {
+    [Parameter] public WorkDayVM WorkDay { get; set; }
+    [Parameter] public EventCallback Save { get; set; }
+    [Parameter] public List<WorkDayVM> workDays { get; set; }
+
+}
+

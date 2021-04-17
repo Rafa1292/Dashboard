@@ -1,0 +1,37 @@
+﻿
+@if (month == null)
+{
+    month = Months.Find(x => x.Id == DateTime.Now.Month);
+    ChangeMonth.InvokeAsync(month);
+}
+
+@if (year == 0)
+{
+    year = DateTime.Now.Year;
+    ChangeYear.InvokeAsync(year);
+}
+
+<div class="col-12 d-flex flex-wrap justify-content-center align-items-baseline">
+    <MatSelectItem  ValueChanged="ChangeMonth" Value="month" Items="@Months">
+        <ItemTemplate>
+            <span>@context?.Name</span>
+        </ItemTemplate>
+    </MatSelectItem>
+    <p class="mx-2">
+        <MatSelectItem ValueChanged="ChangeYear" Value="year" Items="@Years">
+            <ItemTemplate>
+                <span>@context</span>
+            </ItemTemplate>
+        </MatSelectItem>
+    </p>
+    <MatButton Dense="true" OnClick="Today">Ir a fecha actual</MatButton>
+</div>
+@code {
+    [Parameter] public List<MonthDTO> Months { get; set; } = new List<MonthDTO>();
+    [Parameter] public EventCallback<MonthDTO> ChangeMonth { get; set; }
+    [Parameter] public List<int> Years { get; set; } = new List<int>();
+    [Parameter] public EventCallback<int> ChangeYear { get; set; }
+    [Parameter] public EventCallback Today { get; set; }
+    [Parameter] public int year { get; set; }
+    [Parameter] public MonthDTO month { get; set; }
+}

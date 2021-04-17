@@ -2,21 +2,24 @@
     <h4 class="col-12 text-center font-weight-bold text-black-50">Proveedores</h4>
         <MatButtonLink href="/Provider/Create" Outlined="true" TrailingIcon="add">Agregar</MatButtonLink>
 </div>
-<div class="col-md-8 d-flex flex-wrap p-2 mat-elevation-z6 text-black-50">
+<div class="col-md-10 d-flex flex-wrap p-2 mat-elevation-z6 text-black-50">
     <div class="col-12 p-2 m-0 d-flex flex-wrap  border-bottom border-secondary">
         <span class="col-4 justify-content-center align-items-center p-2 text-center smallDeviceHideColumnTable"><strong>Nombre</strong></span>
         <span class="col-4 justify-content-center align-items-center p-2 text-center smallDeviceHideColumnTable"><strong>Telefono</strong></span>
     </div>
     @foreach (var customer in Providers)
     {
-        <div class="col-12 p-2 m-0 d-flex flex-wrap  border-bottom border-secondary">
-            <span class="col-md-4 justify-content-center d-flex align-items-center p-2">@customer.Name</span>
-            <span class="col-md-4 justify-content-center d-flex align-items-center p-2">@customer.Phone</span>
-            <div class="col-md-4 d-flex flex-wrap justify-content-center">
-                <MatButtonLink Class="col-12" Style="" Raised="true" Href="/Provider/Update">Editar</MatButtonLink>
-                <MatButton Class="col-12" Style="" Dense="true" OnClick="Delete">Elimminar</MatButton>
-            </div>
-        </div>
+<div class="col-12 p-2 m-0 d-flex flex-wrap  border-bottom border-secondary">
+    <span class="col-md-3 justify-content-center d-flex align-items-center p-2">@customer.Name</span>
+    <span class="col-md-3 justify-content-center d-flex align-items-center p-2">@customer.Phone</span>
+    <span class="col-md-3 justify-content-center d-flex align-items-center p-2">
+            <MatCheckbox @bind-Value="customer.FixedExpense" Label="Gasto fijo"></MatCheckbox>
+    </span>
+    <div class="col-md-3 d-flex flex-wrap justify-content-center">
+        <MatButtonLink Class="col-12" Style="" Raised="true" Href="/Provider/Update">Editar</MatButtonLink>
+        <MatButton Class="col-12" Style="" Dense="true" OnClick="Delete">Elimminar</MatButton>
+    </div>
+</div>
 
     }
 </div>

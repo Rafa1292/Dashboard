@@ -1,0 +1,38 @@
+﻿<MatTable Items="@WorkDays" PageSize="200" Striped="true" ShowPaging="false" Context="_context" class="mat-elevation-z1 p-0">
+    <MatTableHeader>
+        <th>Fecha</th>
+        <th class="">Efectivo inicial</th>
+        <th class="">Ventas</th>
+        <th class="">Ingresos</th>
+        <th class="">Datafono</th>
+        <th class="">Sinpe</th>
+        <th class="">Transferencia</th>
+        <th class="">Retiros</th>
+        <th class="">Credito</th>
+        <th class="">Efectivo final</th>
+        <th class="">Diferencia</th>
+
+    </MatTableHeader>
+    <MatTableRow>
+        <td>@DateTime.Now.ToShortDateString()</td>
+        <td class="">@_context?.InitialCash</td>
+        <td class="">@_context?.TotalSales</td>
+        <td class="">@_context?.Entries.Select(x => x.Amount).Sum()</td>
+        <td class="">@_context?.TotalCard</td>
+        <td class="">@_context?.TotalSinpe</td>
+        <td class="">@_context?.TotalTransfer</td>
+        <td class="">@_context?.Debits.Select(x => x.Amount).Sum()</td>
+        <td class="">@_context?.Credits.Select(x => x.Amount).Sum()</td>
+        <td class="">@_context?.FinalCash</td>
+        <td class="">@_context?.Missing</td>
+
+    </MatTableRow>
+</MatTable>
+
+
+@code {
+    [Parameter] public List<WorkDayVM> WorkDays { get; set; }
+
+}
+
+
